@@ -1,5 +1,7 @@
+import Main from "./pages/Main";
+
 function App() {
-  return <div className="App">This is the frontend - React</div>;
+  return <Main />;
 }
 
 export default App;
