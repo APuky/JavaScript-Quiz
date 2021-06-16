@@ -24,7 +24,7 @@ function Navbar() {
       </div>
       {isAuth === true ? (
         <Fragment>
-          <Link to="/login" className={styles.login}>
+          <Link to="/logout" className={styles.login}>
             Log<span>Out</span>
           </Link>
         </Fragment>
