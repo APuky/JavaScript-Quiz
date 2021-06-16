@@ -1,12 +1,11 @@
 import React from "react";
-import Layout from "../components/Layout";
-import Navbar from "../components/Navbar";
 
 function Main() {
   return (
-    <Layout>
-      <Navbar />
-    </Layout>
+    <div>
+      Dashboard - main page <br /> Also the page where user will be redirected
+      when they log in
+    </div>
   );
 }
 
