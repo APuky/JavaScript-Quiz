@@ -1,4 +1,4 @@
-import Main from "./pages/Main";
+import Main from "./components/Main";
 import "./styles/Main.scss";
 import { Switch, Route } from "react-router-dom";
 import Layout from "./components/Layout";
