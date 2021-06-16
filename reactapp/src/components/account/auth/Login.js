@@ -22,7 +22,7 @@ function Login() {
       password: password,
     };
 
-    fetch("http://127.0.0.1:8000/api/v1/users/auth/login/", {
+    fetch("http://127.0.0.1:8000/api/users/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
