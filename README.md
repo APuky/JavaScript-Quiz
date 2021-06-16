@@ -1,5 +1,5 @@
-# django-react-quiz
+# Django & React Quiz Web App
 
-First comment - react app created
+Creating full stack app 
 
-Additional update added to React, deleted unnecessary files
+| Work in progress |
