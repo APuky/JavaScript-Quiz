@@ -1,5 +1,21 @@
+import Login from "./pages/Login";
+import Main from "./pages/Main";
+import "./styles/Main.scss";
+import { Switch, Route } from "react-router-dom";
+
 function App() {
-  return <div className="App">This is the frontend - React</div>;
+  return (
+    <>
+      <Switch>
+        <Route path="/" exact>
+          <Main />
+        </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+      </Switch>
+    </>
+  );
 }
 
 export default App;
