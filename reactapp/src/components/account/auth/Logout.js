@@ -14,7 +14,7 @@ const Logout = () => {
   const handleLogout = (e) => {
     e.preventDefault();
 
-    fetch("http://127.0.0.1:8000/api/v1/users/auth/logout/", {
+    fetch("http://127.0.0.1:8000/api/users/auth/logout/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
