@@ -1,0 +1,12 @@
+@import "Variables.scss";
+
+.container {
+  a {
+    text-decoration: none;
+    color: $color-light;
+  }
+}
+
+.layout {
+  background: red;
+}

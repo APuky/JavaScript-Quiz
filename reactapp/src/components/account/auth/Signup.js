@@ -4,12 +4,13 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const [username, setUsername] = useState("");
   const [errors, setErrors] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
-      window.location.replace("http://localhost:3000/dashboard");
+      window.location.replace("http://localhost:3000/");
     } else {
       setLoading(false);
     }
@@ -22,6 +23,7 @@ const Signup = () => {
       email: email,
       password1: password1,
       password2: password2,
+      username: username,
     };
 
     fetch("http://127.0.0.1:8000/api/users/auth/register/", {
@@ -36,11 +38,12 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem("token", data.key);
-          window.location.replace("http://localhost:3000/dashboard");
+          window.location.replace("http://localhost:3000/");
         } else {
           setEmail("");
           setPassword1("");
           setPassword2("");
+          setUsername("");
           localStorage.clear();
           setErrors(true);
         }
@@ -78,6 +81,15 @@ const Signup = () => {
           onChange={(e) => setPassword2(e.target.value)}
           required
         />{" "}
+        <br />
+        <label htmlFor="username">Username:</label> <br />
+        <input
+          name="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
         <br />
         <input type="submit" value="Signup" />
       </form>

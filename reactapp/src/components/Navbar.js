@@ -18,13 +18,16 @@ function Navbar() {
           Poktic
         </Link>
         <ul>
-          <li>Home</li>
-          <li>Scoreboard</li>
+          <Link to="/account">Account</Link>
+          <Link to="/scoreboard">Scoreboard</Link>
         </ul>
       </div>
       {isAuth === true ? (
         <Fragment>
-          <Link to="/logout" className={styles.login}>
+          <Link
+            to="/logout"
+            className={`${styles.login} ${styles.authentication}`}
+          >
             Log<span>Out</span>
           </Link>
         </Fragment>
