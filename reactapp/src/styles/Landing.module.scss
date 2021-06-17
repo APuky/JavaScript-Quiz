@@ -1,14 +1,14 @@
 @import "Variables.scss";
 
 .container {
-  width: 90vw;
+  width: 94vw;
   min-height: 93vh;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 38px;
-  box-shadow: 0 0 31px 6px rgba(0, 0, 0, 0.267);
+  border-radius: 28px;
+  box-shadow: 0 0 11px 3px rgba(0, 0, 0, 0.267);
 }
 
 .relative_container {
@@ -20,10 +20,10 @@
 .navigation {
   width: 100%;
   height: 5rem;
-  border-bottom: 3px solid $color-theme;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .nav_items {
@@ -41,6 +41,12 @@
 
     li {
       list-style-type: none;
+      font-size: 1.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-dark;
       font-size: 1.5rem;
     }
   }
@@ -65,5 +71,36 @@
 
   span {
     color: $color-dark;
+  }
+}
+
+.title {
+  font-size: 3rem;
+  margin-top: 7rem;
+  margin-left: 7rem;
+  span {
+    color: $color-theme;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, $color-theme 50%, transparent 0);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: makeItfadeIn 3s 1s forwards;
+}
+
+@keyframes makeItfadeIn {
+  100% {
+    background-position: left;
   }
 }

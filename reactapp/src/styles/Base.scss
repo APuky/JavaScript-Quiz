@@ -13,17 +13,16 @@ body {
   button {
     outline: none;
     border: none;
-    background: transparent;
-    color: var(--button);
-    border: 1px solid var(--button);
-    border-radius: 1.5rem;
-    font-size: 1.3rem;
+    background: $color-theme;
+    color: $color-light;
+    border: 2px solid $color-theme;
+    font-size: 1.4rem;
     padding: 0.4rem 2rem;
     cursor: pointer;
     transition: 0.2s;
 
     &:hover {
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.411);
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.411);
       transform: translateY(-1px);
     }
 
