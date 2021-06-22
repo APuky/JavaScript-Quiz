@@ -1,12 +1,86 @@
 @import "Variables.scss";
 
 .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media only screen and (min-width: 2100px) {
+    font-size: 140%;
+  }
+  @media only screen and (max-width: 1700px) {
+    font-size: 90%;
+  }
+
+  h1 {
+    font-weight: 400;
+    color: $color-dark;
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  p {
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 10px 0;
+
+    @media only screen and (max-width: 900px) {
+      font-size: 110%;
+      text-align: center;
+      width: 80%;
+    }
+  }
+
+  span {
+    color: $color-theme;
+  }
+
+  ul {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
   a {
-    text-decoration: none;
     color: $color-light;
+    text-decoration: none;
   }
 }
 
-.layout {
-  background: red;
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+
+  @media only screen and (min-width: 2000px) {
+    width: 80%;
+  }
+
+  &_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 20rem;
+    height: 20vh;
+    border: 1px solid $color-theme;
+    padding: 0;
+    margin: 0.7rem 10rem;
+
+    @media only screen and (min-width: 2000px) {
+      margin: 2rem 12rem;
+    }
+
+    li {
+      list-style-type: none;
+      text-transform: capitalize;
+      line-height: 2;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+.button {
+  margin: 1rem 0 2rem 0;
 }
