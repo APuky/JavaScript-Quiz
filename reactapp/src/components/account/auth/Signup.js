@@ -103,7 +103,7 @@ const Signup = () => {
               required
             />
           </div>
-          {errors === true && <h2>Incorrect combination</h2>}
+          {errors === true && <h2>Passwords is too weak or does not match</h2>}
 
           <input
             type="submit"

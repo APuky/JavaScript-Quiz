@@ -201,7 +201,7 @@
     color: red;
     font-weight: 400;
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   input {
@@ -209,7 +209,6 @@
     padding: 0.5rem;
     margin: 0.5rem 0;
     border: 1px solid $color-theme;
-    margin-left: 1rem;
 
     @media only screen and (max-width: 1000px) {
       width: 15rem;
