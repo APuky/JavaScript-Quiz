@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Landing.module.scss";
-
+import LogoJS from "./svgs/LogoJS";
 function Navbar() {
   const [isAuth, setIsAuth] = useState(false);
 
@@ -15,7 +15,7 @@ function Navbar() {
     <div className={styles.navigation}>
       <div className={styles.nav_items}>
         <Link to="/" className={styles.logo}>
-          Poktic
+          <LogoJS /> Quiz
         </Link>
         <ul>
           <Link to="/account">Account</Link>
@@ -37,14 +37,9 @@ function Navbar() {
             <Link to="/login" className={styles.login}>
               Log<span>In</span>{" "}
             </Link>
-            /
-            <Link to="/signup" className={styles.login}>
-              Sign<span>Up</span>{" "}
-            </Link>
           </Fragment>
         </div>
       )}
-      <div className={styles.line}></div>
     </div>
   );
 }

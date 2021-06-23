@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import styles from "../../../styles/Authentication.module.scss";
+import Illustration from "../../illustrations/IllustrationSignup";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -52,47 +54,67 @@ const Signup = () => {
 
   return (
     <div>
-      {loading === false && <h1>Signup</h1>}
-      {errors === true && <h2>Cannot signup with provided credentials</h2>}
-      <form onSubmit={onSubmit}>
-        <label htmlFor="email">Email address:</label> <br />
-        <input
-          name="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <label htmlFor="password1">Password:</label> <br />
-        <input
-          name="password1"
-          type="password"
-          value={password1}
-          onChange={(e) => setPassword1(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <label htmlFor="password2">Confirm password:</label> <br />
-        <input
-          name="password2"
-          type="password"
-          value={password2}
-          onChange={(e) => setPassword2(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <label htmlFor="username">Username:</label> <br />
-        <input
-          name="username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <br />
-        <input type="submit" value="Signup" />
-      </form>
+      <div className={styles.signup}>
+        <form onSubmit={onSubmit}>
+          <h1>
+            Sign<span>Up</span>
+          </h1>
+          <div className={styles.input}>
+            <label htmlFor="email"></label> <br />
+            <input
+              name="email"
+              type="email"
+              value={email}
+              placeholder="  Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label htmlFor="username"></label>
+            <input
+              name="username"
+              type="text"
+              placeholder="  Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label htmlFor="password1"></label>
+            <input
+              name="password1"
+              type="password"
+              value={password1}
+              placeholder="  Password"
+              onChange={(e) => setPassword1(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label htmlFor="password2"></label>
+            <input
+              name="password2"
+              type="password"
+              placeholder="  Confirm Password"
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+              required
+            />
+          </div>
+          {errors === true && <h2>Incorrect combination</h2>}
+
+          <input
+            type="submit"
+            value="Confirm"
+            className={styles.button_login}
+          />
+        </form>
+        <div className={styles.illustration}>
+          <Illustration />
+        </div>
+      </div>
     </div>
   );
 };

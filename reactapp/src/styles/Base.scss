@@ -4,11 +4,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
-  letter-spacing: 0.14rem;
+  letter-spacing: 0.18rem;
   overflow-x: hidden;
   color: $color-dark;
+  -webkit-tap-highlight-color: transparent;
 
   button {
     outline: none;
@@ -17,7 +18,7 @@ body {
     color: $color-light;
     border: 2px solid $color-theme;
     font-size: 1.4rem;
-    padding: 0.4rem 2rem;
+    padding: 0.6rem 1.6rem;
     cursor: pointer;
     transition: 0.2s;
 
@@ -29,5 +30,140 @@ body {
     &:active {
       transform: translateY(2px);
     }
+  }
+}
+
+.svg-logo {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: $color-dark;
+  margin: 0 0.3rem;
+  animation: spin 9s linear infinite;
+}
+
+.main-svg {
+  align-self: flex-end;
+  margin: 0 7rem 7rem 0;
+  height: 30rem;
+  width: 30rem;
+}
+
+.logout-svg {
+  height: 30vh;
+  width: 30vw;
+  margin-top: 7rem;
+  margin-left: 7rem;
+}
+
+.svg {
+  width: 40px;
+  height: 40px;
+
+  @media only screen and (min-width: 2000px) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.js-svg {
+  width: 40px;
+  height: 40px;
+}
+.js-svg-login {
+  width: 40px;
+  height: 40px;
+}
+
+.email-svg,
+.password-svg {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+#top-circle,
+#right-circle {
+  animation: slightMovement 9s linear infinite;
+}
+
+#bottom-circle {
+  animation: slightMovementReverse 9s reverse infinite;
+}
+
+#login,
+#sun,
+#logo_svg {
+  animation: color-change 15s linear infinite;
+}
+
+.login-svg {
+  width: 505px;
+  height: 530px;
+  margin-bottom: 5rem;
+}
+
+.signup-illustration,
+#signup-illustration {
+  width: 800px;
+  height: 400px;
+
+  @media only screen and (max-width: 1400px) {
+    width: 700px;
+    height: 260px;
+  }
+
+  @media only screen and (max-height: 730px) {
+    display: none;
+  }
+}
+
+#lighting {
+  animation: lighting 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slightMovement {
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes slightMovementReverse {
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes color-change {
+  0% {
+    fill: $color-theme;
+  }
+  50% {
+    fill: yellow;
+  }
+  100% {
+    fill: $color-theme;
+  }
+}
+@keyframes lighting {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    display: block;
+  }
+  100% {
+    display: block;
   }
 }
