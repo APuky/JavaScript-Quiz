@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+import styles from "../../../styles/Authentication.module.scss";
+import { Link } from "react-router-dom";
+import Illustration from "../../illustrations/IllustrationLogin";
+import EmailSvg from "../../svgs/EmailSvg";
+import PasswordSvg from "../../svgs/PasswordSvg";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -46,30 +51,59 @@ function Login() {
 
   return (
     <div>
-      {loading === false && <h1>Login</h1>}
-      {errors === true && <h2>Cannot log in with provided credentials</h2>}
       {loading === false && (
-        <form onSubmit={onSubmit}>
-          <label htmlFor="email">Email address:</label> <br />
-          <input
-            name="email"
-            type="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />{" "}
-          <br />
-          <label htmlFor="password">Password:</label> <br />
-          <input
-            name="password"
-            type="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />{" "}
-          <br />
-          <input type="submit" value="Login" />
-        </form>
+        <div className={styles.content}>
+          <div className={styles.login}>
+            <h1>Welcome back. Log in, please.</h1>
+            <form onSubmit={onSubmit}>
+              <div className={styles.input}>
+                <label htmlFor="email"></label> <br />
+                <EmailSvg />
+                <input
+                  name="email"
+                  type="email"
+                  value={email}
+                  placeholder="  Email"
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                />{" "}
+              </div>
+              <br />
+              <div className={styles.input}>
+                <label htmlFor="password"></label> <br />
+                <PasswordSvg />
+                <input
+                  name="password"
+                  type="password"
+                  value={password}
+                  placeholder="  Password"
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />{" "}
+              </div>
+              {errors === true && (
+                <div className={styles.incorrect}>
+                  Cannot log in with provided credentials
+                </div>
+              )}
+              <br />
+              <input
+                type="submit"
+                value="Log In"
+                className={styles.button_login}
+              />
+            </form>
+            <div className={styles.sign_up}>
+              Don't have an account? <br /> <br />
+              <Link to="/signup" className={styles.sign_up__button}>
+                Sign<span>Up</span>{" "}
+              </Link>
+            </div>
+          </div>
+          <div className={styles.illustration}>
+            <Illustration />
+          </div>
+        </div>
       )}
     </div>
   );

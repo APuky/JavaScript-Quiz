@@ -1,4 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
+import styles from "../../../styles/Authentication.module.scss";
+import Illustration from "../../illustrations/IllustrationLogOut";
 
 const Logout = () => {
   const [loading, setLoading] = useState(true);
@@ -30,14 +32,27 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      {loading === false && (
-        <Fragment>
-          <h1>Are you sure you want to logout?</h1>
-          <input type="button" value="Logout" onClick={handleLogout} />
-        </Fragment>
-      )}
-    </div>
+    <>
+      <div className={styles.container}>
+        {loading === false && (
+          <Fragment>
+            <div className={styles.logout}>
+              <h1>Are you sure you want to log out?</h1>
+              <input
+                type="button"
+                value="Confirm"
+                className={styles.button}
+                onClick={handleLogout}
+              />
+            </div>
+          </Fragment>
+        )}
+        <div className={styles.illustration}>
+          <Illustration />
+        </div>
+      </div>
+      <div className={styles.blue_box}></div>
+    </>
   );
 };
 
