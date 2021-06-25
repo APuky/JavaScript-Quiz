@@ -39,6 +39,7 @@ function Login() {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem("token", data.key);
+          localStorage.setItem("email", email);
           window.location.replace("http://localhost:3000/");
         } else {
           setEmail("");
