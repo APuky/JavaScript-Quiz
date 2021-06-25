@@ -6,7 +6,7 @@ import EmailSvg from "../../svgs/EmailSvg";
 import PasswordSvg from "../../svgs/PasswordSvg";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ function Login() {
     e.preventDefault();
 
     const user = {
-      email: email,
+      username: username,
       password: password,
     };
 
@@ -39,10 +39,10 @@ function Login() {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem("token", data.key);
-          localStorage.setItem("email", email);
+          localStorage.setItem("username", username);
           window.location.replace("http://localhost:3000/");
         } else {
-          setEmail("");
+          setUsername("");
           setPassword("");
           localStorage.clear();
           setErrors(true);
@@ -58,15 +58,15 @@ function Login() {
             <h1>Welcome back. Log in, please.</h1>
             <form onSubmit={onSubmit}>
               <div className={styles.input}>
-                <label htmlFor="email"></label> <br />
+                <label htmlFor="username"></label> <br />
                 <EmailSvg />
                 <input
-                  name="email"
-                  type="email"
-                  value={email}
-                  placeholder="  Email"
+                  name="username"
+                  type="username"
+                  value={username}
+                  placeholder="  Username"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                 />{" "}
               </div>
               <br />
