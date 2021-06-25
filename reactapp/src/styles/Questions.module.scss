@@ -1,0 +1,136 @@
+@import "Variables.scss";
+
+.container {
+  width: 100%;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.title {
+  text-align: center;
+
+  span {
+    color: $color-theme;
+  }
+}
+
+.description {
+  align-self: center;
+  text-align: center;
+  width: 80%;
+}
+
+.variables {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
+  margin-left: 5rem;
+
+  p {
+    margin: 0.5rem 0;
+  }
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.answer {
+  width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+
+  p {
+    min-height: 2rem;
+  }
+}
+
+.select {
+  width: 6.5rem;
+  height: 1.3rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-theme;
+  background: $color-light;
+  border-radius: 16px;
+  transition: 0.2s;
+  cursor: pointer;
+  margin-top: 3rem;
+
+  &:hover .line {
+    width: 50%;
+  }
+  &:active,
+  &:focus {
+    transform: translateY(1px);
+    background: $color-theme;
+
+    & .line {
+      background: $color-light;
+    }
+  }
+}
+.selected {
+  width: 6.5rem;
+  height: 1.3rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-theme;
+  border-radius: 16px;
+  transition: 0.2s;
+  cursor: pointer;
+  margin-top: 3rem;
+  background: $color-theme;
+
+  & .line {
+    background: $color-light;
+  }
+}
+
+.line {
+  height: 2px;
+  width: 20%;
+  border-radius: 25px;
+  background: $color-theme;
+  transition: 0.5s;
+}
+
+.btn {
+  width: fit-content;
+  justify-self: center;
+  font-size: 1.2rem;
+}
+.correct {
+  width: fit-content;
+  justify-self: center;
+  font-size: 1.2rem;
+  background: green;
+}
+.false {
+  width: fit-content;
+  justify-self: center;
+  font-size: 1.2rem;
+  background: red;
+  border: 1px solid #000;
+  opacity: 0.6;
+}
+
+.response {
+  color: red;
+}

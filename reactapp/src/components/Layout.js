@@ -9,7 +9,7 @@ function Layout(props) {
   return (
     <div
       className={
-        pathname === "/quiz" || "/signup"
+        pathname === "/quiz" || pathname === "/signup"
           ? styles.container_full
           : styles.container
       }
