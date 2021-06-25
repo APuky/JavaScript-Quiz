@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../styles/Account.module.scss";
 
 function Account() {
+  
   return (
     <>
       <h1>"Username logic"</h1>
