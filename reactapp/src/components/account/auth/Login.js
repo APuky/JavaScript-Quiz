@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Authentication.module.scss";
 import { Link } from "react-router-dom";
 import Illustration from "../../illustrations/IllustrationLogin";
-import EmailSvg from "../../svgs/EmailSvg";
+import UserSvg from "../../svgs/UserSvg";
 import PasswordSvg from "../../svgs/PasswordSvg";
 
 function Login() {
@@ -59,7 +59,7 @@ function Login() {
             <form onSubmit={onSubmit}>
               <div className={styles.input}>
                 <label htmlFor="username"></label> <br />
-                <EmailSvg />
+                <UserSvg />
                 <input
                   name="username"
                   type="username"
