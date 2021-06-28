@@ -45,12 +45,16 @@
 }
 
 .answer {
-  width: 25rem;
+  width: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
+
+  @media only screen and (max-width: 1300px) {
+    width: 20rem;
+  }
 
   p {
     min-height: 2rem;

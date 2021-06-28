@@ -28,6 +28,7 @@ function Questions() {
   useEffect(() => {
     if (minutes === 0 && timeLeft === 0) {
       setSelectedAnswerBoolean(false);
+      setIsAnswerCorrect(false);
       submitHandler();
     }
 
@@ -41,7 +42,7 @@ function Questions() {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [timeLeft, minutes]);
+  }, [timeLeft]);
 
   const answerHandler = (answer) => {
     answer === true
