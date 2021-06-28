@@ -115,22 +115,47 @@
   width: fit-content;
   justify-self: center;
   font-size: 1.2rem;
+  background: $color-theme;
+  border: none;
 }
-.correct {
+
+.btn_opacity {
   width: fit-content;
   justify-self: center;
   font-size: 1.2rem;
-  background: green;
-}
-.false {
-  width: fit-content;
-  justify-self: center;
-  font-size: 1.2rem;
-  background: red;
-  border: 1px solid #000;
+  background: $color-theme;
+  border: none;
   opacity: 0.6;
 }
 
 .response {
   color: red;
+  width: 70%;
+  text-align: center;
+
+  span {
+    color: $color-dark;
+  }
+}
+
+h3 {
+  color: green;
+  margin: 0;
+}
+
+.submitting {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 80%;
+}
+
+.timer {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  font-weight: 400;
+  font-size: 1.2rem;
 }

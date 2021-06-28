@@ -26,7 +26,11 @@ function Main() {
       <div className={styles.intro}>
         {" "}
         <div className={styles.title}>
-          <h4>Welcome "Implement logic"</h4>
+          {localStorage.getItem("username") === null ? null : (
+            <h4>
+              Welcome <span>{localStorage.getItem("username")} </span>
+            </h4>
+          )}
           How well do you know <br /> <span>J</span>ava<span>S</span>cript?
         </div>
         <button className={styles.btn} onClick={() => toTestHandler()}>
