@@ -36,7 +36,7 @@ export const questions = [
     description: "Which answer will result in number 33",
     variables: [
       { id: 1, variable: "" },
-      { id: 1, variable: "" },
+      { id: 2, variable: "" },
     ],
     answersAll: [
       {
@@ -76,22 +76,22 @@ export const questions = [
     answersAll: [
       {
         id: 1,
-        answer: "console.log(data[0].profession);",
+        answer: "data[0].profession;",
         isCorrect: false,
       },
       {
         id: 2,
-        answer: 'console.log(data["name"]);',
+        answer: 'data["name"];',
         isCorrect: true,
       },
       {
         id: 3,
-        answer: "console.log(data[surname]);",
+        answer: "data[surname];",
         isCorrect: false,
       },
       {
         id: 4,
-        answer: "const answer4 = '30' + 3;",
+        answer: "data.whoAmI();",
         isCorrect: false,
       },
     ],
@@ -170,5 +170,42 @@ export const questions = [
     ],
     explanation:
       "Regex in the correct answer replaces comma, although sentence does not have any space. Don't worry much about this one. Great people use regex to simplify web for us and sometimes their regex solution is all we need",
+  },
+  {
+    description: " What is the name of the following function?",
+    variables: [
+      {
+        id: 1,
+        variable: '(() => {console.log("Hello");})();',
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer: "Immediately Invoked Function Expression",
+        isCorrect: true,
+      },
+      {
+        id: 2,
+        answer: "Arrow Function Expression",
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: "// Function Destruction",
+        isCorrect: false,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: "Callback Function",
+        isCorrect: false,
+      },
+    ],
+    explanation:
+      "IIFE refers to a function that is executed as soon as it is created by calling it at the end of declaring it.",
   },
 ];
