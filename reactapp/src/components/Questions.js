@@ -87,9 +87,9 @@ function Questions() {
         {questions[currentQuestion].description}
       </div>
       <div className={styles.variables}>
-        {questions[currentQuestion].variables.map((variable) => (
-          <div key={Math.random()}>
-            <p>{variable}</p>
+        {questions[currentQuestion].variables.map((vars) => (
+          <div key={vars.id}>
+            <p>{vars.variable}</p>
           </div>
         ))}
       </div>
