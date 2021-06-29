@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Illustration from "../../illustrations/IllustrationLogin";
 import UserSvg from "../../svgs/UserSvg";
 import PasswordSvg from "../../svgs/PasswordSvg";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../../Animation";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -51,7 +53,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <motion.div variants={pageAnimation} initial="hidden" animate="show">
       {loading === false && (
         <div className={styles.content}>
           <div className={styles.login}>
@@ -106,7 +108,7 @@ function Login() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 

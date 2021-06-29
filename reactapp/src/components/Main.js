@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Landing.module.scss";
 import { useHistory } from "react-router-dom";
 import Illustration from "./illustrations/IllustrationMain";
+import { motion } from "framer-motion";
+import { pageAnimation, slideToRight } from "./Animation";
 
 function Main() {
   const [isAuth, setIsAuth] = useState(false);
@@ -22,7 +24,12 @@ function Main() {
   };
 
   return (
-    <div className={styles.landing_page}>
+    <motion.div
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+      className={styles.landing_page}
+    >
       <div className={styles.intro}>
         {" "}
         <div className={styles.title}>
@@ -33,13 +40,19 @@ function Main() {
           )}
           How well do you know <br /> <span>J</span>ava<span>S</span>cript?
         </div>
-        <button className={styles.btn} onClick={() => toTestHandler()}>
+        <motion.button
+          variants={slideToRight}
+          initial="hidden"
+          animate="show"
+          className={styles.btn}
+          onClick={() => toTestHandler()}
+        >
           Test Now
-        </button>
+        </motion.button>
       </div>
 
       <Illustration />
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Authentication.module.scss";
 import Illustration from "../../illustrations/IllustrationSignup";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../../Animation";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -57,7 +59,7 @@ const Signup = () => {
   }
 
   return (
-    <div>
+    <motion.div variants={pageAnimation} initial="hidden" animate="show">
       <div className={styles.signup}>
         <form onSubmit={onSubmit}>
           <h1>
@@ -119,7 +121,7 @@ const Signup = () => {
           <Illustration />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
