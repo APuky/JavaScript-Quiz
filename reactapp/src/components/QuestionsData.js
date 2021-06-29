@@ -2,7 +2,10 @@ export const questions = [
   {
     description:
       " In the array we have the prices of tickets. Which array method would return number 140?",
-    variables: ["const ticketsPrice = [20, 30, 40, 50];", "let total = 0;"],
+    variables: [
+      { id: 1, variable: "const ticketsPrice = [20, 30, 40, 50];" },
+      { id: 2, variable: "let total = 0;" },
+    ],
     answersAll: [
       {
         id: 1,
@@ -30,8 +33,11 @@ export const questions = [
       "Reduce method accumulates current item in the array to one, final sum. That being said in this example current value is 20, then accumulator goes to the next one which is 30 and adds it automatically to the previous value of 20. Now the new value is 50, and so on... ",
   },
   {
-    description: " Which answer will result in number 33",
-    variables: ["", ""],
+    description: "Which answer will result in number 33",
+    variables: [
+      { id: 1, variable: "" },
+      { id: 1, variable: "" },
+    ],
     answersAll: [
       {
         id: 1,
@@ -60,8 +66,12 @@ export const questions = [
   {
     description: "Which console log will return string?",
     variables: [
-      'const data = {name: "Walter",surname: "White",profession: "Teacher", whoAmI: function () { this.name + " " + this.surname;},};',
-      "",
+      {
+        id: 1,
+        variable:
+          'const data = {name: "Walter",surname: "White",profession: "Teacher", whoAmI: function () { this.name + " " + this.surname;},};',
+      },
+      { id: 2, variable: "" },
     ],
     answersAll: [
       {
@@ -87,5 +97,78 @@ export const questions = [
     ],
     explanation:
       "First console log returns error. There is no 0 index in the single object. Third one executes variable that does not exist and final one executes function that does not return anything (return statement missing)",
+  },
+  {
+    description: "What would be the output of .padEnd method?",
+    variables: [
+      {
+        id: 1,
+        variable: 'const theStringMethod = "We need to fill the minimum ";',
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        answer: "We need to fill the minimum 1,",
+        isCorrect: true,
+      },
+      {
+        id: 2,
+        answer: "We need to fill the 1, 2, 3, 4, 5, 6 or more times minimum",
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        answer: "undefined",
+        isCorrect: false,
+      },
+      {
+        id: 4,
+        answer: "We need to fill the minimum 1, 2, 3, 4, 5, 6 or more times",
+        isCorrect: false,
+      },
+    ],
+    explanation:
+      ".padEnd is a string method that will add additional characters to your string depending on the conditions you insert. In this case the string is limited to minimum of 30 characters and that space is filled with additional string. Since string ends at 30 characters, the additional string could not be displayed until the end",
+  },
+  {
+    description:
+      "Which of the following regular expressions does not replace comma with space correctly?",
+    variables: [
+      {
+        id: 1,
+        variable:
+          'const removeComma = "I want to, remove, any comma in this, sentence with space";',
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer: "removeComma.replace(/[,s]+|[,s]+/g, ' ');",
+        isCorrect: false,
+      },
+      {
+        id: 2,
+        answer: "removeComma.replace(/[, ]+/g, ' ').trim();",
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: "removeComma.replace(/[,s]/g, '');",
+        isCorrect: false,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: "removeComma.replace(/[,s]/g, ''));",
+        isCorrect: true,
+      },
+    ],
+    explanation:
+      "Regex in the correct answer replaces comma, although sentence does not have any space. Don't worry much about this one. Great people use regex to simplify web for us and sometimes their regex solution is all we need",
   },
 ];

@@ -52,6 +52,10 @@ const Signup = () => {
       });
   };
 
+  if (loading) {
+    return <h1 className={styles.sign_up}>Loading data</h1>;
+  }
+
   return (
     <div>
       <div className={styles.signup}>
