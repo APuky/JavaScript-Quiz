@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styles from "../../../styles/Authentication.module.scss";
 import Illustration from "../../illustrations/IllustrationLogOut";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../../Animation";
 
 const Logout = () => {
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,12 @@ const Logout = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        className={styles.container}
+      >
         {loading === false && (
           <Fragment>
             <div className={styles.logout}>
@@ -50,8 +57,13 @@ const Logout = () => {
         <div className={styles.illustration}>
           <Illustration />
         </div>
-      </div>
-      <div className={styles.blue_box}></div>
+      </motion.div>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        className={styles.blue_box}
+      ></motion.div>
     </>
   );
 };

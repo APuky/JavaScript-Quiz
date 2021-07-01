@@ -5,10 +5,17 @@ import TestSvg from "./svgs/TestSvg";
 import LearnSvg from "./svgs/LearnSvg";
 import EntertainSvg from "./svgs/EntertainSvg";
 import RankSvg from "./svgs/RankSvg";
+import { motion } from "framer-motion";
+import { pageAnimation } from "./Animation";
 
 function Quiz() {
   return (
-    <div className={styles.container}>
+    <motion.div
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+      className={styles.container}
+    >
       <h1>
         {" "}
         Welcome To The <span>J</span>ava<span>S</span>cript Quiz
@@ -38,7 +45,7 @@ function Quiz() {
       <button className={styles.button}>
         <Link to="/questions">Start</Link>{" "}
       </button>
-    </div>
+    </motion.div>
   );
 }
 
