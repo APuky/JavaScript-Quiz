@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { questions } from "./QuestionsData";
 import styles from "../styles/Questions.module.scss";
 import SelectButton from "./SelectButton";
+import { motion } from "framer-motion";
+import { pageAnimation } from "./Animation";
 
 function Questions() {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState("");
@@ -93,7 +95,12 @@ function Questions() {
           </div>
         ))}
       </div>
-      <div className={styles.answers}>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        className={styles.answers}
+      >
         {questions[currentQuestion].answersAll.map((ans) => (
           <div key={ans.id}>
             <div className={styles.answer}>
@@ -102,7 +109,7 @@ function Questions() {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
       {isAnswerCorrect === false && (
         <div className={styles.response}>
           <p> Correct answer is {correctAnswerNumber}</p>
