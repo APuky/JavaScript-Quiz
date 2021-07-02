@@ -5,5 +5,6 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     score = models.IntegerField(default = 0)
+    quizTaken = models.IntegerField(default = 0)
     def __str__(self):
         return self.email

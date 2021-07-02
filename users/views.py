@@ -15,9 +15,9 @@ def scoreboard(request):
 
 
 @api_view(['GET'])
-def account(request, pk):
+def account(request):
     if request.method == 'GET':
-        user = CustomUser.objects.get(pk=pk)
+        user = request.user
 
         serializer = UserSerializer(user)
         return JsonResponse(serializer.data)
