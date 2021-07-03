@@ -1,7 +1,7 @@
 export const questions = [
   {
     description:
-      " In the array we have the prices of tickets. Which array method would return number 140?",
+      " In the array we have prices of tickets. Which array method would return number 140?",
     variables: [
       { id: 1, variable: "const ticketsPrice = [20, 30, 40, 50];" },
       { id: 2, variable: "let total = 0;" },
@@ -64,7 +64,7 @@ export const questions = [
       '("3" + "3") equals to "33". + sign converts the string to a number wich results in a number of 33.',
   },
   {
-    description: "Which console log will return string?",
+    description: "Which console log would return string?",
     variables: [
       {
         id: 1,
@@ -105,7 +105,11 @@ export const questions = [
         id: 1,
         variable: 'const theStringMethod = "We need to fill the minimum ";',
       },
-      { id: 2, variable: "" },
+      {
+        id: 2,
+        variable:
+          'theStringMethod.padEnd(30, "1, 2, 3, 4, 5, 6 or more times")',
+      },
     ],
     answersAll: [
       {
@@ -189,13 +193,13 @@ export const questions = [
       },
       {
         id: 2,
-        answer: "Arrow Function Expression",
+        answer: "Arrow Function Declaration",
         isCorrect: false,
       },
       {
         id: 3,
         // eslint-disable-next-line no-useless-escape
-        answer: "// Function Destruction",
+        answer: "Function Destruction",
         isCorrect: false,
       },
       {
@@ -207,5 +211,156 @@ export const questions = [
     ],
     explanation:
       "IIFE refers to a function that is executed as soon as it is created by calling it at the end of declaring it.",
+  },
+  {
+    description:
+      "What is the correct way to fetch local JSON data from the following options? (script.js and data.json are in same directory without modules)",
+    variables: [
+      {
+        id: 1,
+        variable: "",
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer: "const data = require('./data.json'); \n fetch(data);",
+        isCorrect: false,
+      },
+      {
+        id: 2,
+        answer: "import {data} from './data'; fetch(data);",
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: "fetch('./data.json')",
+        isCorrect: true,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: "const primaryData = fetch(./data.json)",
+        isCorrect: false,
+      },
+    ],
+    explanation:
+      'The "require" is NodeJS function to include modules which does not work in vanilla JavaScript. Importing is not possible outside of module either. Last answer is missing quotes/invalid import',
+  },
+  {
+    description: "Which inline function call is incorrect?",
+    variables: [
+      {
+        id: 1,
+        variable: "",
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer: `'onclick="function inlineFunc(){alert('Hello')}; inlineFunc()"'`,
+        isCorrect: false,
+      },
+      {
+        id: 2,
+        answer: `'onclick="(() => alert('Hello'))()"'`,
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: `'onclick="(function() {alert('Hello')})()"'`,
+        isCorrect: false,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: `'onclick="() => alert('Hello')"'`,
+        isCorrect: true,
+      },
+    ],
+    explanation:
+      "Every answer contains a function that is called at the end. The 4th one does not get called which results in no click event at the end.",
+  },
+  {
+    description: "Which of the following is not true?",
+    variables: [
+      {
+        id: 1,
+        variable: "const array = [1, 2, 3, 4, 5];",
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer:
+          "The splice() method mutates original array and slice() does not",
+        isCorrect: false,
+      },
+      {
+        id: 2,
+        answer: "const newArray = array.splice() will result in an empty array",
+        isCorrect: false,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: "const newArray = array.splice(2, -1) will return [3, 4]",
+        isCorrect: true,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: "const newArray = array.slice(1, 2) will return [2]",
+        isCorrect: false,
+      },
+    ],
+    explanation:
+      "The splice() method takes delete count as second parameter and in this case second parameter, in correct answer, is -1 which makes the newArray empty",
+  },
+  {
+    description:
+      "Which of the following methods adds new element to the beginning of an array?",
+    variables: [
+      {
+        id: 1,
+        variable: "",
+      },
+      { id: 2, variable: "" },
+    ],
+    answersAll: [
+      {
+        id: 1,
+        // eslint-disable-next-line no-useless-escape
+        answer: "shift()",
+        isCorrect: false,
+      },
+      {
+        id: 2,
+        answer: "unshift()",
+        isCorrect: true,
+      },
+      {
+        id: 3,
+        // eslint-disable-next-line no-useless-escape
+        answer: "join()",
+        isCorrect: false,
+      },
+      {
+        id: 4,
+        // eslint-disable-next-line no-useless-escape
+        answer: "push()",
+        isCorrect: false,
+      },
+    ],
+    explanation:
+      "The shift() method removes first element from an array. The join() converts an array to a string and lets you modify it. The push() method pushes new element to the end of an array",
   },
 ];
