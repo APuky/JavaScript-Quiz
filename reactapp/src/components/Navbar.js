@@ -6,9 +6,9 @@ function Navbar() {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("token") !== null) {
+    if (localStorage.getItem("username") !== null) {
       setIsAuth(true);
-    }
+    } else localStorage.clear();
   }, []);
 
   return (

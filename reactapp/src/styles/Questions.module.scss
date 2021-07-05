@@ -30,6 +30,7 @@
   align-items: flex-start;
   align-self: flex-start;
   margin-left: 5rem;
+  margin-top: 0.5rem;
 
   p {
     margin: 0.5rem 0;
@@ -52,7 +53,7 @@
   flex-direction: column;
   padding: 2rem;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (max-width: 1400px) {
     width: 20rem;
   }
 
@@ -73,7 +74,7 @@
   border-radius: 16px;
   transition: 0.2s;
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   &:hover .line {
     width: 50%;

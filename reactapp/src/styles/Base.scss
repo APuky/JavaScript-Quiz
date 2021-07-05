@@ -11,6 +11,10 @@ body {
   color: $color-dark;
   -webkit-tap-highlight-color: transparent;
 
+  @media only screen and (max-width: 1300px) {
+    font-size: 90%;
+  }
+
   button {
     outline: none;
     border: none;
