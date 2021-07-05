@@ -104,7 +104,7 @@ function Questions() {
         {questions[currentQuestion].answersAll.map((ans) => (
           <div key={ans.id}>
             <div className={styles.answer}>
-              <p> {ans.answer}</p>
+              <p>{ans.answer}</p>
               <SelectButton ans={ans} answerHandler={answerHandler} />
             </div>
           </div>

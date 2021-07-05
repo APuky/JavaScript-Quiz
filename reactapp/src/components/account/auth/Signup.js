@@ -42,12 +42,11 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem("token", data.key);
+          localStorage.setItem("username", username);
           window.location.replace("http://localhost:3000/");
         } else {
-          setEmail("");
           setPassword1("");
           setPassword2("");
-          setUsername("");
           localStorage.clear();
           setErrors(true);
         }

@@ -69,7 +69,7 @@ export const questions = [
       {
         id: 1,
         variable:
-          'const data = {name: "Walter",surname: "White",profession: "Teacher", whoAmI: function () { this.name + " " + this.surname;},};',
+          'const data = {name: "Walter",surname: "White",profession: "Teacher", whoAmI: function() { this.name + " " + this.surname;},};',
       },
       { id: 2, variable: "" },
     ],
