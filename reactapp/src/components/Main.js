@@ -25,8 +25,13 @@ function Main() {
   };
 
   const test = () => {
-    const promise = axios.get("http://127.0.0.1:8000/api/users/account/");
+    const token = localStorage.getItem("token");
+    //console.log(token);
+    // const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/");
 
+    const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
+      headers: { Authorization: `Token ${token}` },
+    });
     const dataPromise = promise.then((res) => console.log(res.data));
 
     return dataPromise;
