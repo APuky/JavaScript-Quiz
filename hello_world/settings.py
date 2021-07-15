@@ -167,8 +167,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_UNIQUE_EMAILK = True
 
 REST_FRAMEWORK = {    
-'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",    'DEFAULT_AUTHENTICATION_CLASSES': [        'rest_framework.authentication.TokenAuthentication',    
-'rest_framework.authentication.SessionAuthentication', ], 
+'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",    
+'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.BasicAuthentication',
+       'rest_framework.authentication.TokenAuthentication' ), 
 }
 
 REST_AUTH_SERIALIZERS = {

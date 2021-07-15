@@ -31,3 +31,8 @@ def scoreboard(request):
 #     #     serializer = UserAccountSerializer(user)
 #     #     return JsonResponse(serializer.data)
     
+@api_view(['POST'])
+def updateScore(request, score):
+    user = CustomUser.objects.get(username = request.user.username)
+    user.score = score
+    user.save()
