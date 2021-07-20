@@ -38,25 +38,26 @@ function Main() {
 
   // FUNCTION FOR UPDATING THE SCORE OF THE CURRENTLY LOGGED IN USER
   //This should work!
-  const test = () => {
-    const token = localStorage.getItem("token");
-    //console.log(token);
-    // const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/");
+  // const test = () => {
+  //   const token = localStorage.getItem("token");
+  //   //console.log(token);
+  //   // const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/");
 
-    const data = {
-      score: 6,
-    };
-    const promise = axios.patch(
-      "http://127.0.0.1:8000/api/users/auth/user/",
-      data,
-      {
-        headers: { Authorization: `Token ${token}` },
-      }
-    );
-    const dataPromise = promise.then((res) => console.log(res.data));
+  //   const data = {
+  //     score: 2,
+  //     time: 22
+  //   };
+  //   const promise = axios.patch(
+  //     "http://127.0.0.1:8000/api/users/auth/user/",
+  //     data,
+  //     {
+  //       headers: { Authorization: `Token ${token}` },
+  //     }
+  //   );
+  //   const dataPromise = promise.then((res) => console.log(res.data));
 
-    return dataPromise;
-  };
+  //   return dataPromise;
+  // };
 
   return (
     <motion.div
