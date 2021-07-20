@@ -37,6 +37,7 @@ function Main() {
   // };
 
   // FUNCTION FOR UPDATING THE SCORE OF THE CURRENTLY LOGGED IN USER
+  //This should work!
   const test = () => {
     const token = localStorage.getItem("token");
     //console.log(token);
