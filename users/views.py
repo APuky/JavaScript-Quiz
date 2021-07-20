@@ -5,15 +5,18 @@ from rest_framework.decorators import api_view
 from django.http.response import JsonResponse
 
 from django.contrib.auth.models import AnonymousUser
+from django.http import HttpResponse
 # Create your views here.
 
 @api_view(['GET'])
 def scoreboard(request):
-    if request.method == 'GET':
+    if request.method == 'GET' and request.user.is_authenticated:
         score_list = CustomUser.objects.all()
 
         serializer = UserAccountSerializer(score_list, many=True)
         return JsonResponse(serializer.data, safe=False)
+    else :
+        return HttpResponse('Permission denied!')
 
 
 # @api_view(['GET'])
@@ -30,9 +33,3 @@ def scoreboard(request):
 #     #     user = AnonymousUser
 #     #     serializer = UserAccountSerializer(user)
 #     #     return JsonResponse(serializer.data)
-    
-@api_view(['POST'])
-def updateScore(request, score):
-    user = CustomUser.objects.get(username = request.user.username)
-    user.score = score
-    user.save()
