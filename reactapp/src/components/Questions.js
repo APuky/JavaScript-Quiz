@@ -4,8 +4,11 @@ import styles from "../styles/Questions.module.scss";
 import SelectButton from "./SelectButton";
 import { motion } from "framer-motion";
 import { pageAnimation } from "./Animation";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Questions() {
+  let history = useHistory();
   const [isAnswerCorrect, setIsAnswerCorrect] = useState("");
   const [correctAnswerNumber, setCorrectAnswerNumber] = useState("");
   const [selectedAnswerBoolean, setSelectedAnswerBoolean] = useState("");
@@ -44,6 +47,7 @@ function Questions() {
     }, 1000);
 
     return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft]);
 
   const answerHandler = (answer) => {
@@ -64,8 +68,24 @@ function Questions() {
   };
 
   const nextQuestionHandler = () => {
+    const token = localStorage.getItem("token");
+
     if (currentQuestion >= questions.length - 1) {
-      return;
+      localStorage.setItem("score", correctAnswers);
+      const data = {
+        score: correctAnswers,
+        quizTaken: 1,
+      };
+      const promise = axios.patch(
+        "http://127.0.0.1:8000/api/users/auth/user/",
+        data,
+        {
+          headers: { Authorization: `Token ${token}` },
+        }
+      );
+      const dataPromise = promise.then((res) => console.log(res.data));
+      history.push("/account");
+      return dataPromise;
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setIsAnswerCorrect("");

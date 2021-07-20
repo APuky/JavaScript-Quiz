@@ -9,44 +9,57 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "./Animation";
 
 function Quiz() {
-  return (
-    <motion.div
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-      className={styles.container}
-    >
-      <h1>
-        {" "}
-        Welcome To The <span>J</span>ava<span>S</span>cript Quiz
-      </h1>
-      <div className={styles.about}>
-        <div className={styles.about_box}>
-          <TestSvg />
-          <li>test your fundamental skills of JavaScript with 10 questions</li>
-        </div>
-        <div className={styles.about_box}>
-          <LearnSvg />
-          <li>learn more about JavaScript</li>
-        </div>
-        <div className={styles.about_box}>
-          <EntertainSvg />
-          <li>Challenge yourself in Entertaining way</li>
-        </div>
-        <div className={styles.about_box}>
-          <RankSvg />
-          <li>see how you rank on global scoreboard</li>
-        </div>
+  if (localStorage.getItem("score")) {
+    return (
+      <div className={styles.test_taken}>
+        <h2>
+          Test already taken. Thank you for the participation{" "}
+          <span> {localStorage.getItem("username")}</span>
+        </h2>
       </div>
-      <p>For each question there will be 2 minutes available</p>
-      <p>
-        There is only 1 attempt so be ready to take few minutes to complete it
-      </p>
-      <button className={styles.button}>
-        <Link to="/questions">Start</Link>{" "}
-      </button>
-    </motion.div>
-  );
+    );
+  } else {
+    return (
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        className={styles.container}
+      >
+        <h1>
+          {" "}
+          Welcome To The <span>J</span>ava<span>S</span>cript Quiz
+        </h1>
+        <div className={styles.about}>
+          <div className={styles.about_box}>
+            <TestSvg />
+            <li>
+              test your fundamental skills of JavaScript with 10 questions
+            </li>
+          </div>
+          <div className={styles.about_box}>
+            <LearnSvg />
+            <li>learn more about JavaScript</li>
+          </div>
+          <div className={styles.about_box}>
+            <EntertainSvg />
+            <li>Challenge yourself in Entertaining way</li>
+          </div>
+          <div className={styles.about_box}>
+            <RankSvg />
+            <li>see how you rank on global scoreboard</li>
+          </div>
+        </div>
+        <p>For each question there will be 2 minutes available</p>
+        <p>
+          There is only 1 attempt so be ready to take few minutes to complete it
+        </p>
+        <button className={styles.button}>
+          <Link to="/questions">Start</Link>{" "}
+        </button>
+      </motion.div>
+    );
+  }
 }
 
 export default Quiz;

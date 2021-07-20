@@ -1,1 +1,14 @@
 @import "Variables.scss";
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 50vh;
+
+  span {
+    color: $color-theme;
+  }
+}

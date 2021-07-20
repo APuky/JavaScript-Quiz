@@ -95,3 +95,14 @@
     transform: scale(1);
   }
 }
+
+.test_taken {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+
+  span {
+    color: $color-theme;
+  }
+}
