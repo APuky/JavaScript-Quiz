@@ -23,15 +23,35 @@ function Main() {
       history.push("/login");
     }
   };
+  // FUNCTION FOR GETTING THE DATA OF THE CURRENTLY LOGGED IN USER
 
+  // const test = () => {
+  //   const token = localStorage.getItem("token");
+
+  //   const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
+  //     headers: { Authorization: `Token ${token}` },
+  //   });
+  //   const dataPromise = promise.then((res) => console.log(res.data));
+
+  //   return dataPromise;
+  // };
+
+  // FUNCTION FOR UPDATING THE SCORE OF THE CURRENTLY LOGGED IN USER
   const test = () => {
     const token = localStorage.getItem("token");
     //console.log(token);
     // const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/");
 
-    const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
-      headers: { Authorization: `Token ${token}` },
-    });
+    const data = {
+      score: 6,
+    };
+    const promise = axios.patch(
+      "http://127.0.0.1:8000/api/users/auth/user/",
+      data,
+      {
+        headers: { Authorization: `Token ${token}` },
+      }
+    );
     const dataPromise = promise.then((res) => console.log(res.data));
 
     return dataPromise;
