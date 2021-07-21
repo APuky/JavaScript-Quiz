@@ -10,8 +10,8 @@ from django.http import HttpResponse
 
 @api_view(['GET'])
 def scoreboard(request):
-    if request.method == 'GET' and request.user.is_authenticated:
-        score_list = CustomUser.objects.all()
+    if request.method == 'GET':
+        score_list = CustomUser.objects.filter(score__isnull=False)
 
         serializer = UserAccountSerializer(score_list, many=True)
         return JsonResponse(serializer.data, safe=False)
