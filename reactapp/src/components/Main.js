@@ -68,7 +68,7 @@ function Main() {
     >
       <div className={styles.intro}>
         {" "}
-        <div className={styles.title} onClick={() => test()}>
+        <div className={styles.title}>
           {localStorage.getItem("username") === null ? null : (
             <h4>
               Welcome <span>{localStorage.getItem("username")} </span>
