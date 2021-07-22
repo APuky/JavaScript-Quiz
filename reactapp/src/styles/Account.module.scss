@@ -7,8 +7,20 @@
   justify-content: center;
   flex-direction: column;
   min-height: 50vh;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  line-height: 2;
+  text-align: center;
 
   span {
     color: $color-theme;
+  }
+}
+
+.button {
+  margin-top: 2rem;
+  a {
+    text-decoration: none;
+    color: $color-light;
   }
 }
