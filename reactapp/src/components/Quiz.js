@@ -43,17 +43,15 @@ function Quiz() {
           </div>
           <div className={styles.about_box}>
             <EntertainSvg />
-            <li>Challenge yourself in Entertaining way</li>
+            <li>Challenge yourself in an Entertaining way</li>
           </div>
           <div className={styles.about_box}>
             <RankSvg />
-            <li>see how you rank on global scoreboard</li>
+            <li>see how you rank on the global scoreboard</li>
           </div>
         </div>
-        <p>For each question there will be 2 minutes available</p>
-        <p>
-          There is only 1 attempt so be ready to take few minutes to complete it
-        </p>
+        <p>You will have 2 minutes to answer a question</p>
+        <p>You only get 1 attempt per quiz so don't rush it!</p>
         <button className={styles.button}>
           <Link to="/questions">Start</Link>{" "}
         </button>
