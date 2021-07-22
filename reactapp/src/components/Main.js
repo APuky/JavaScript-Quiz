@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import Illustration from "./illustrations/IllustrationMain";
 import { motion } from "framer-motion";
 import { pageAnimation, slideToRight } from "./Animation";
-import axios from "axios";
 
 function Main() {
   const [isAuth, setIsAuth] = useState(false);

@@ -11,7 +11,8 @@ function Layout(props) {
       className={
         pathname === "/quiz" ||
         pathname === "/signup" ||
-        pathname === "/questions"
+        pathname === "/questions" ||
+        pathname === "/scoreboard"
           ? styles.container_full
           : styles.container
       }

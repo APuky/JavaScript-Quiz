@@ -11,4 +11,4 @@ class UserSerializer(ModelSerializer):
 class UserAccountSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('username', 'score',)
+        fields = ('username', 'score', 'id')
