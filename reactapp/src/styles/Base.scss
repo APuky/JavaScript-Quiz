@@ -50,6 +50,10 @@ body {
   margin: 0 7rem 7rem 0;
   height: 30rem;
   width: 30rem;
+
+  @media only screen and (max-width: 850px) {
+    display: none;
+  }
 }
 
 .logout-svg {
