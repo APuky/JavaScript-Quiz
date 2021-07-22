@@ -19,8 +19,8 @@ function Account() {
         </h1>
         <div className={styles.data}>
           <h4>
-            You scored <span>{localStorage.getItem("score")}</span> correct
-            answers
+            You got <span>{localStorage.getItem("score")}</span> answers correct
+            out of 10
           </h4>
         </div>
       </motion.div>
