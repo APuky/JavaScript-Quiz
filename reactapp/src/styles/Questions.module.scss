@@ -12,6 +12,10 @@
 .title {
   text-align: center;
 
+  @media only screen and (max-width: 870px) {
+    font-size: 1.4rem;
+  }
+
   span {
     color: $color-theme;
   }
@@ -21,6 +25,10 @@
   align-self: center;
   text-align: center;
   width: 80%;
+
+  @media only screen and (max-width: 700px) {
+    width: 90%;
+  }
 }
 
 .variables {
@@ -31,6 +39,12 @@
   align-self: flex-start;
   margin-left: 5rem;
   margin-top: 0.5rem;
+
+  @media only screen and (max-width: 500px) {
+    margin-left: 1rem;
+    border-bottom: 1px solid $color-theme;
+    border-top: 1px solid $color-theme;
+  }
 
   p {
     margin: 0.5rem 0;
@@ -57,8 +71,20 @@
     width: 20rem;
   }
 
+  @media only screen and (max-width: 870px) {
+    width: 30vw;
+    padding: 1rem;
+  }
+  @media only screen and (max-width: 650px) {
+    width: 95vw;
+  }
+
   p {
     min-height: 2rem;
+
+    @media only screen and (max-width: 870px) {
+      min-height: 1rem;
+    }
   }
 }
 
@@ -75,6 +101,11 @@
   transition: 0.2s;
   cursor: pointer;
   margin-top: 2rem;
+
+  @media only screen and (max-width: 870px) {
+    margin-top: 1rem;
+    width: 5.5rem;
+  }
 
   &:hover .line {
     width: 50%;

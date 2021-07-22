@@ -28,6 +28,10 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  @media only screen and (max-width: 1000px) {
+    justify-content: flex-end;
+  }
 }
 
 .nav_items {
@@ -36,6 +40,10 @@
   align-items: center;
   justify-content: space-between;
   margin-left: 5rem;
+
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 
   ul {
     display: flex;
@@ -78,8 +86,22 @@
   text-decoration: none;
   font-weight: 500;
 
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+
   span {
     color: $color-dark;
+  }
+}
+
+.intro {
+  @media only screen and (max-width: 850px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 
@@ -87,6 +109,14 @@
   font-size: 3.3rem;
   margin-top: 7rem;
   margin-left: 7rem;
+
+  @media only screen and (max-width: 850px) {
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 2rem;
+    text-transform: capitalize;
+    text-align: center;
+  }
   span {
     color: $color-theme;
   }
@@ -105,10 +135,92 @@
   margin-left: 7rem;
   font-size: 1.7rem;
   margin-top: 2rem;
+
+  @media only screen and (max-width: 850px) {
+    margin: 2rem 0 5rem 0;
+    font-size: 1.4rem;
+  }
 }
 
 .landing_page {
   display: flex;
   justify-content: space-between;
   min-height: 88vh;
+
+  @media only screen and (max-width: 850px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// Burger menu
+
+.menu {
+  width: 3rem;
+  z-index: 550;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 4rem;
+  cursor: pointer;
+
+  @media screen and (min-width: 1000px) {
+    display: none;
+  }
+
+  @media only screen and (max-width: 500px) {
+    margin-right: 1.2rem;
+  }
+}
+
+.bar {
+  width: 70%;
+  height: 2px;
+  background: $color-dark;
+
+  &:nth-child(2) {
+    margin: 0.25rem 0;
+  }
+}
+
+.menu_container {
+  position: fixed;
+  width: 0vw;
+  height: 0vh;
+  top: 0;
+  right: 0;
+  background: $color-theme;
+  z-index: 500;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-out;
+  clip-path: polygon(50% 0%, 100% 0, 100% 100%, 0 100%, 0 18%);
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 5;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-light;
+    font-size: 1.6rem;
+  }
+}
+
+.active {
+  opacity: 1;
+  height: 100%;
+  width: 100vw;
+  bottom: 0;
 }

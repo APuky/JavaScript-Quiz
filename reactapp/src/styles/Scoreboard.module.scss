@@ -1,0 +1,60 @@
+@import "Variables.scss";
+
+.container {
+  width: 100%;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+
+  h4 {
+    letter-spacing: 0.3rem;
+    font-size: 1.2rem;
+
+    @media only screen and (max-width: 850px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  h3 {
+    color: $color-theme;
+    font-size: 1.5rem;
+
+    @media only screen and (max-width: 850px) {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.each_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30rem;
+  background: rgba($color-theme, 0.2);
+  margin: 1rem 0;
+  padding: 1.6rem 3.6rem;
+
+  @media only screen and (max-width: 850px) {
+    width: 80vw;
+  }
+}
+
+.top_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30rem;
+  background: rgba(orange, 0.4);
+  margin: 1rem 0;
+  padding: 1.6rem 3.6rem;
+
+  @media only screen and (max-width: 850px) {
+    width: 80vw;
+  }
+
+  h3 {
+    color: $color-dark;
+    font-size: 1.8rem;
+  }
+}
