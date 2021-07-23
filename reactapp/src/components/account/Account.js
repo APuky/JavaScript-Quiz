@@ -5,7 +5,7 @@ import { pageAnimation } from "../Animation";
 import { Link } from "react-router-dom";
 
 function Account() {
-  if (localStorage.getItem("score")) {
+  if (localStorage["score"] >= 0) {
     return (
       <motion.div
         variants={pageAnimation}

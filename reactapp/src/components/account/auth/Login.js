@@ -21,14 +21,6 @@ function Login() {
     } else {
       setLoading(false);
     }
-  }, []);
-
-  useEffect(() => {
-    if (userData) {
-      localStorage.setItem("quizTaken", userData.quizTaken);
-      localStorage.setItem("score", userData.score);
-      window.location.replace("http://localhost:3000/");
-    }
   }, [userData]);
 
   const onSubmit = (e) => {
