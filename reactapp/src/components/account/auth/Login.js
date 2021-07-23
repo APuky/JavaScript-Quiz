@@ -6,12 +6,14 @@ import UserSvg from "../../svgs/UserSvg";
 import PasswordSvg from "../../svgs/PasswordSvg";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../../Animation";
+import axios from "axios";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
@@ -20,6 +22,14 @@ function Login() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      localStorage.setItem("quizTaken", userData.quizTaken);
+      localStorage.setItem("score", userData.score);
+      window.location.replace("http://localhost:3000/");
+    }
+  }, [userData]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +52,16 @@ function Login() {
           localStorage.clear();
           localStorage.setItem("token", data.key);
           localStorage.setItem("username", username);
-          window.location.replace("http://localhost:3000/");
+          const promise = axios.get(
+            "http://127.0.0.1:8000/api/users/auth/user/",
+            {
+              headers: {
+                headers: { Authorization: `Token ${data.key}` },
+              },
+            }
+          );
+          const dataPromise = promise.then((res) => setUserData(res.data));
+          return dataPromise;
         } else {
           setUsername("");
           setPassword("");
