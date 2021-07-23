@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Illustration from "./illustrations/IllustrationMain";
 import { motion } from "framer-motion";
 import { pageAnimation, slideToRight } from "./Animation";
+import axios from "axios";
 
 function Main() {
   const [isAuth, setIsAuth] = useState(false);
@@ -14,6 +15,13 @@ function Main() {
       setIsAuth(true);
     }
   }, []);
+
+  const test = () => {
+    const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
+      headers: { Authorization: `Token ${localStorage.getItem("token")}` },
+    });
+    const dataPromise = promise.then((res) => console.log(res.data));
+  };
 
   const toTestHandler = () => {
     if (isAuth) {
@@ -69,7 +77,7 @@ function Main() {
         {" "}
         <div className={styles.title}>
           {localStorage.getItem("username") === null ? null : (
-            <h4>
+            <h4 onClick={() => test()}>
               Welcome <span>{localStorage.getItem("username")} </span>
             </h4>
           )}
