@@ -83,9 +83,8 @@ function Questions() {
           headers: { Authorization: `Token ${token}` },
         }
       );
-      const dataPromise = promise.then((res) => console.log(res.data));
       history.push("/account");
-      return dataPromise;
+      return promise;
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setIsAnswerCorrect("");
@@ -97,62 +96,70 @@ function Questions() {
     setMinutes(1);
   };
 
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>
-        Question <span>{currentQuestion + 1}</span>
-        <p>
-          {correctAnswers}/{currentQuestion + 1}
-        </p>
-      </h1>
-      <div className={styles.description}>
-        {questions[currentQuestion].description}
-      </div>
-      <div className={styles.variables}>
-        {questions[currentQuestion].variables.map((vars) => (
-          <div key={vars.id}>
-            <p>{vars.variable}</p>
+  // eslint-disable-next-line eqeqeq
+  if (localStorage["quizTaken"] == 1) {
+    return <h2>Test already taken</h2>;
+  } else {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.title}>
+          Question <span>{currentQuestion + 1}</span>
+          <p>
+            {correctAnswers}/{currentQuestion + 1}
+          </p>
+        </h1>
+        <div className={styles.description}>
+          {questions[currentQuestion].description}
+        </div>
+        <div className={styles.variables}>
+          {questions[currentQuestion].variables.map((vars) => (
+            <div key={vars.id}>
+              <p>{vars.variable}</p>
+            </div>
+          ))}
+        </div>
+        <motion.div
+          variants={pageAnimation}
+          initial="hidden"
+          animate="show"
+          className={styles.answers}
+        >
+          {questions[currentQuestion].answersAll.map((ans) => (
+            <div key={ans.id}>
+              <div className={styles.answer}>
+                <p>{ans.answer}</p>
+                <SelectButton ans={ans} answerHandler={answerHandler} />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+        {isAnswerCorrect === false && (
+          <div className={styles.response}>
+            <p> Correct answer is {correctAnswerNumber}</p>
+            <span>{questions[currentQuestion].explanation}</span>
           </div>
-        ))}
-      </div>
-      <motion.div
-        variants={pageAnimation}
-        initial="hidden"
-        animate="show"
-        className={styles.answers}
-      >
-        {questions[currentQuestion].answersAll.map((ans) => (
-          <div key={ans.id}>
-            <div className={styles.answer}>
-              <p>{ans.answer}</p>
-              <SelectButton ans={ans} answerHandler={answerHandler} />
+        )}
+        {isAnswerCorrect === true && <h3>Correct!</h3>}
+        {isAnswerCorrect === "" ? (
+          <div className={styles.submitting}>
+            <button
+              className={isAnswerSelected}
+              onClick={() => submitHandler()}
+            >
+              Submit
+            </button>
+            <div className={styles.timer}>
+              0{minutes}:{timeLeft >= 10 ? timeLeft : `0${timeLeft}`}
             </div>
           </div>
-        ))}
-      </motion.div>
-      {isAnswerCorrect === false && (
-        <div className={styles.response}>
-          <p> Correct answer is {correctAnswerNumber}</p>
-          <span>{questions[currentQuestion].explanation}</span>
-        </div>
-      )}
-      {isAnswerCorrect === true && <h3>Correct!</h3>}
-      {isAnswerCorrect === "" ? (
-        <div className={styles.submitting}>
-          <button className={isAnswerSelected} onClick={() => submitHandler()}>
-            Submit
+        ) : (
+          <button className={styles.btn} onClick={() => nextQuestionHandler()}>
+            Next
           </button>
-          <div className={styles.timer}>
-            0{minutes}:{timeLeft >= 10 ? timeLeft : `0${timeLeft}`}
-          </div>
-        </div>
-      ) : (
-        <button className={styles.btn} onClick={() => nextQuestionHandler()}>
-          Next
-        </button>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  }
 }
 
 export default Questions;
