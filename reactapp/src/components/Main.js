@@ -1,33 +1,20 @@
-import React, { useState, useEffect } from "react";
-import styles from "../styles/Landing.module.scss";
-import { useHistory } from "react-router-dom";
-import Illustration from "./illustrations/IllustrationMain";
-import { motion } from "framer-motion";
-import { pageAnimation, slideToRight } from "./Animation";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import styles from '../styles/Landing.module.scss';
+import { useHistory } from 'react-router-dom';
+import Illustration from './illustrations/IllustrationMain';
+import { motion } from 'framer-motion';
+import { pageAnimation, slideToRight } from './Animation';
+import axios from 'axios';
 
 function Main() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   let history = useHistory();
 
-  useEffect(() => {
-    if (localStorage.getItem("token") !== null) {
-      setIsAuth(true);
-    }
-  }, []);
-
-  const test = () => {
-    const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
-      headers: { Authorization: `Token ${localStorage.getItem("token")}` },
-    });
-    const dataPromise = promise.then((res) => console.log(res.data));
-  };
-
   const toTestHandler = () => {
-    if (isAuth) {
-      history.push("/quiz");
+    if (isLoggedIn) {
+      history.push('/quiz');
     } else {
-      history.push("/login");
+      history.push('/login');
     }
   };
   // FUNCTION FOR GETTING THE DATA OF THE CURRENTLY LOGGED IN USER
@@ -74,11 +61,11 @@ function Main() {
       className={styles.landing_page}
     >
       <div className={styles.intro}>
-        {" "}
+        {' '}
         <div className={styles.title}>
-          {localStorage.getItem("username") === null ? null : (
+          {localStorage.getItem('username') === null ? null : (
             <h4 onClick={() => test()}>
-              Welcome <span>{localStorage.getItem("username")} </span>
+              Welcome <span>{localStorage.getItem('username')} </span>
             </h4>
           )}
           How well do you know <br /> <span>J</span>ava<span>S</span>cript?
@@ -93,7 +80,6 @@ function Main() {
           Test Now
         </motion.button>
       </div>
-
       <Illustration />
     </motion.div>
   );
