@@ -6,7 +6,8 @@
     "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
-    "postinstall": "keystone postinstall"
+    "postinstall": "keystone postinstall",
+    "deploy": "git pull && npm i && npm run build && npm run start"
   },
   "dependencies": {
     "@keystone-6/auth": "^1.0.1",
