@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../styles/Landing.module.scss";
-import Navbar from "./Navbar";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import styles from '../styles/Landing.module.scss';
+import Navbar from './Navbar';
+import { useLocation } from 'react-router-dom';
 
 function Layout(props) {
   const { pathname } = useLocation();
@@ -9,10 +9,10 @@ function Layout(props) {
   return (
     <div
       className={
-        pathname === "/quiz" ||
-        pathname === "/signup" ||
-        pathname === "/questions" ||
-        pathname === "/scoreboard"
+        pathname === '/quiz' ||
+        pathname === '/signup' ||
+        pathname === '/questions' ||
+        pathname === '/scoreboard'
           ? styles.container_full
           : styles.container
       }
