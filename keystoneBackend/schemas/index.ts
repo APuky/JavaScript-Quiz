@@ -1,5 +1,5 @@
 import { User } from './User';
-// Export schemas
+// Export schemas :)
 export const lists = {
   User,
 };
