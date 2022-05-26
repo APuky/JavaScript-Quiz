@@ -6,10 +6,7 @@ export const LOGIN_MUTATION = gql`
       ... on UserAuthenticationWithPasswordSuccess {
         sessionToken
         item {
-          id
           name
-          email
-          isAdmin
         }
       }
     }

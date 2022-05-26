@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import styles from "../../../styles/Authentication.module.scss";
-import { Link } from "react-router-dom";
-import Illustration from "../../illustrations/IllustrationLogin";
-import UserSvg from "../../svgs/UserSvg";
-import PasswordSvg from "../../svgs/PasswordSvg";
-import { motion } from "framer-motion";
-import { pageAnimation } from "../../Animation";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import styles from '../../../styles/Authentication.module.scss';
+import { Link } from 'react-router-dom';
+import Illustration from '../../illustrations/IllustrationLogin';
+import UserSvg from '../../svgs/UserSvg';
+import PasswordSvg from '../../svgs/PasswordSvg';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../../Animation';
+// import axios from 'axios';
 import { useMutation } from 'react-query';
 import client from '../../../utils/rq-graphql-client';
 import { LOGIN_MUTATION } from '../../../graphql/mutations';
@@ -67,8 +67,7 @@ function Login() {
     //     }
     //   });
 
-    const resp = await mutation.mutateAsync(user);
-    console.log(resp?.authenticateUserWithPassword?.item?.id); // TODO: save this in localstorage
+    const resp = await mutation.mutateAsync(user); // We get sessionToken, and name
   };
 
   return (
