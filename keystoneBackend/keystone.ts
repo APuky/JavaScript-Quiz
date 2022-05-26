@@ -11,7 +11,11 @@ export default withAuth(
     },
     server: {
       cors: {
-        origin: [process.env.FRONTEND_DOMAIN_URL!, 'http://localhost:3200'],
+        origin: [
+          process.env.FRONTEND_DOMAIN_URL!,
+          'http://localhost:3200',
+          'http://localhost:3300',
+        ],
         credentials: true,
       },
       port: +process.env.PORT!,
@@ -33,5 +37,5 @@ export default withAuth(
       // generateNextGraphqlAPI: true,
       // generateNodeAPI: true,
     },
-  }),
+  })
 );
