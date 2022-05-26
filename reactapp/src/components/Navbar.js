@@ -1,26 +1,35 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
-import styles from "../styles/Landing.module.scss";
-import LogoJS from "./svgs/LogoJS";
-import BurgerMenu from "./BurgerMenu";
-import { useLocation } from "react-router-dom";
+import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../styles/Landing.module.scss';
+import LogoJS from './svgs/LogoJS';
+import BurgerMenu from './BurgerMenu';
+import { useLocation } from 'react-router-dom';
+import useUser from '../hooks/useUser';
 
 function Navbar() {
   const { pathname } = useLocation();
-  const [isAuth, setIsAuth] = useState(false);
+  // const [isAuth, setIsAuth] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem("username") !== null) {
-      setIsAuth(true);
-    } else localStorage.clear();
-  }, []);
+  const { isLoading, user } = useUser();
+
+  // console.log({ error, isLoading, user });
+
+  // useEffect(() => {
+  //   if (user) {
+  //     setIsAuth(true);
+  //   } else {
+  //     setIsAuth(false);
+  //   }
+  // }, []);
 
   const menuHandler = () => {
     setMenuActive(!menuActive);
   };
 
-  return pathname === "/questions" ? (
+  if (isLoading) return null;
+
+  return pathname === '/questions' ? (
     <div></div>
   ) : (
     <div className={styles.navigation}>
@@ -33,24 +42,27 @@ function Navbar() {
           <Link to="/scoreboard">Scoreboard</Link>
         </ul>
       </div>
-      {isAuth === true ? (
+      {user !== null ? (
         <Fragment>
-          <Link
-            to="/logout"
-            className={`${styles.login} ${styles.authentication}`}
-          >
-            Log<span>Out</span>
-          </Link>
+          <div>
+            <span>{`Hi, ${user?.name}`}</span>{' '}
+            <Link
+              to="/logout"
+              className={`${styles.login} ${styles.authentication}`}
+            >
+              Log<span>Out</span>
+            </Link>
+          </div>
         </Fragment>
       ) : (
         <div className={styles.authentication}>
           <Fragment>
             <Link to="/login" className={styles.login}>
-              Log<span>In</span>{" "}
+              Log<span>In</span>{' '}
             </Link>
           </Fragment>
         </div>
-      )}{" "}
+      )}{' '}
       <div className={styles.menu} onClick={() => menuHandler()}>
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>

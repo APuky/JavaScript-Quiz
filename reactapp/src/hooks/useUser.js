@@ -7,7 +7,6 @@ const CURRENT_USER_QUERY = gql`
     authenticatedItem {
       ... on User {
         id
-        subjectId
         name
         email
       }
