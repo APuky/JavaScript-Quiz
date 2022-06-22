@@ -1,57 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../styles/Landing.module.scss';
-import { useHistory } from 'react-router-dom';
-import Illustration from './illustrations/IllustrationMain';
-import { motion } from 'framer-motion';
-import { pageAnimation, slideToRight } from './Animation';
-import axios from 'axios';
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Illustration from './illustrations/IllustrationMain'
+import { pageAnimation, slideToRight } from './Animation'
+import { authActions } from '../shared/store/authSlice'
+
+import styles from '../styles/Landing.module.scss'
 
 function Main() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  let history = useHistory();
+  const { isLoggedIn } = useSelector((s) => s.auth)
+  let history = useHistory()
+  const dispatch = useDispatch()
 
   const toTestHandler = () => {
-    if (isLoggedIn) {
-      history.push('/quiz');
-    } else {
-      history.push('/login');
+    if (isLoggedIn) history.push('/quiz')
+    else {
+      dispatch(authActions.isLogging())
+      history.push('/login')
     }
-  };
-  // FUNCTION FOR GETTING THE DATA OF THE CURRENTLY LOGGED IN USER
-
-  // const test = () => {
-  //   const token = localStorage.getItem("token");
-
-  //   const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/", {
-  //     headers: { Authorization: `Token ${token}` },
-  //   });
-  //   const dataPromise = promise.then((res) => console.log(res.data));
-
-  //   return dataPromise;
-  // };
-
-  // FUNCTION FOR UPDATING THE SCORE OF THE CURRENTLY LOGGED IN USER
-  //This should work!
-  // const test = () => {
-  //   const token = localStorage.getItem("token");
-  //   //console.log(token);
-  //   // const promise = axios.get("http://127.0.0.1:8000/api/users/auth/user/");
-
-  //   const data = {
-  //     score: 2,
-  //     time: 22
-  //   };
-  //   const promise = axios.patch(
-  //     "http://127.0.0.1:8000/api/users/auth/user/",
-  //     data,
-  //     {
-  //       headers: { Authorization: `Token ${token}` },
-  //     }
-  //   );
-  //   const dataPromise = promise.then((res) => console.log(res.data));
-
-  //   return dataPromise;
-  // };
+  }
 
   return (
     <motion.div
@@ -75,14 +44,14 @@ function Main() {
           initial="hidden"
           animate="show"
           className={styles.btn}
-          onClick={() => toTestHandler()}
+          onClick={toTestHandler}
         >
           Test Now
         </motion.button>
       </div>
       <Illustration />
     </motion.div>
-  );
+  )
 }
 
-export default Main;
+export default Main

@@ -1,37 +1,33 @@
-import React, { useState, useEffect, Fragment } from "react";
-import styles from "../../../styles/Authentication.module.scss";
-import Illustration from "../../illustrations/IllustrationLogOut";
-import { motion } from "framer-motion";
-import { pageAnimation } from "../../Animation";
+import React, { Fragment } from 'react'
+import { motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Illustration from '../../illustrations/IllustrationLogOut'
+import LoadingSpinner from '../../../shared/UIElements/LoadingSpinner/LoadingSpinner'
+import { pageAnimation } from '../../Animation'
+import { useHistory } from 'react-router-dom'
+import { useHttp } from '../../../shared/hooks/http-hook'
+import { authActions } from '../../../shared/store/authSlice'
+import { userDataActions } from '../../../shared/store/userDataSlice'
+
+import styles from '../../../styles/Authentication.module.scss'
 
 const Logout = () => {
-  const [loading, setLoading] = useState(true);
+  const { sendRequest, isLoading, error } = useHttp()
+  const { token } = useSelector((s) => s.userData)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
-  useEffect(() => {
-    if (localStorage.getItem("token") == null) {
-      window.location.replace("http://localhost:3000/login");
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-
-    fetch("http://127.0.0.1:8000/api/users/auth/logout/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${localStorage.getItem("token")}`,
-      },
+  const handleLogout = async (e) => {
+    e.preventDefault()
+    const response = await sendRequest('users/logout', 'GET', null, {
+      Authorization: `Bearer ${token}`,
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        localStorage.clear();
-        window.location.replace("http://localhost:3000/login");
-      });
-  };
+    dispatch(authActions.logout())
+    dispatch(userDataActions.clearData())
+    history.push('/')
+    console.log(response)
+  }
 
   return (
     <>
@@ -41,7 +37,8 @@ const Logout = () => {
         animate="show"
         className={styles.container}
       >
-        {loading === false && (
+        {isLoading && <LoadingSpinner asOverlay />}
+        {!isLoading && (
           <Fragment>
             <div className={styles.logout}>
               <h1>Are you sure you want to log out?</h1>
@@ -54,6 +51,7 @@ const Logout = () => {
             </div>
           </Fragment>
         )}
+        {error && <div className={styles.incorrect}>{error}</div>}
         <div className={styles.illustration}>
           <Illustration />
         </div>
@@ -65,7 +63,7 @@ const Logout = () => {
         className={styles.blue_box}
       ></motion.div>
     </>
-  );
-};
+  )
+}
 
-export default Logout;
+export default Logout
