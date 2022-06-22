@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
+import userRoutes from './routes/user-route.js'
 import HttpError from './utils/http-error.js'
 
 const app = express()
@@ -23,7 +24,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api', (req, res) => res.json('haha'))
+app.use('/api/users', userRoutes)
 
 app.use(() => {
   const error = new HttpError('Could not find this route.', 404)

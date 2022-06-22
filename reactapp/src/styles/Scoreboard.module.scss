@@ -49,6 +49,10 @@
   margin: 1rem 0;
   padding: 1.6rem 3.6rem;
 
+  .incorrect {
+    color: red;
+  }
+
   @media only screen and (max-width: 850px) {
     width: 80vw;
   }

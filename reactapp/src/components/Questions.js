@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { questions } from './QuestionsData'
-import styles from '../styles/Questions.module.scss'
-import SelectButton from './SelectButton'
 import { motion } from 'framer-motion'
 import { pageAnimation } from './Animation'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+
+import SelectButton from './SelectButton'
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner/LoadingSpinner'
+import { questions } from './QuestionsData'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHttp } from '../shared/hooks/http-hook'
+import { userDataActions } from '../shared/store/userDataSlice'
+
+import styles from '../styles/Questions.module.scss'
 
 function Questions() {
   let history = useHistory()
+  const { token, uid } = useSelector((s) => s.userData)
+  const { sendRequest, isLoading, error } = useHttp()
+  const dispatch = useDispatch()
   const [isAnswerCorrect, setIsAnswerCorrect] = useState('')
   const [correctAnswerNumber, setCorrectAnswerNumber] = useState('')
   const [selectedAnswerBoolean, setSelectedAnswerBoolean] = useState('')
@@ -67,24 +75,20 @@ function Questions() {
     }
   }
 
-  const nextQuestionHandler = () => {
-    const token = localStorage.getItem('token')
-
+  const nextQuestionHandler = async () => {
     if (currentQuestion >= questions.length - 1) {
-      localStorage.setItem('score', correctAnswers)
       const data = {
         score: correctAnswers,
-        quizTaken: 1,
+        uid,
+        flag: 'QUIZ_COMPLETED',
       }
-      const promise = axios.patch(
-        'http://127.0.0.1:8000/api/users/auth/user/',
-        data,
-        {
-          headers: { Authorization: `Token ${token}` },
-        },
-      )
+      try {
+        await sendRequest('users/update_quiz_status', 'PATCH', data, {
+          Authorization: `Bearer ${token}`,
+        })
+      } catch (e) {}
+      dispatch(userDataActions.updateData(data))
       history.push('/account')
-      return promise
     } else {
       setCurrentQuestion(currentQuestion + 1)
       setIsAnswerCorrect('')
@@ -96,11 +100,9 @@ function Questions() {
     setMinutes(1)
   }
 
-  // eslint-disable-next-line eqeqeq
-  if (localStorage['quizTaken'] == 1) {
-    return <h2>Test already taken</h2>
-  } else {
-    return (
+  return (
+    <>
+      {isLoading && <LoadingSpinner asOverlay />}
       <div className={styles.container}>
         <h1 className={styles.title}>
           Question <span>{currentQuestion + 1}</span>
@@ -157,9 +159,10 @@ function Questions() {
             Next
           </button>
         )}
+        {error && <div className={styles.incorrect}>{error}</div>}
       </div>
-    )
-  }
+    </>
+  )
 }
 
 export default Questions

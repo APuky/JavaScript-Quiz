@@ -88,6 +88,10 @@
   animation: pop-in 2s ease-in 0.2s;
 }
 
+.incorrect{
+  color:red
+}
+
 @keyframes pop-in {
   0% {
     transform: scale(0.1);

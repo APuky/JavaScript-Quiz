@@ -1,26 +1,25 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
-import styles from "../styles/Landing.module.scss";
-import LogoJS from "./svgs/LogoJS";
-import BurgerMenu from "./BurgerMenu";
-import { useLocation } from "react-router-dom";
+import React, { useState, Fragment } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
+import LogoJS from './svgs/LogoJS'
+import BurgerMenu from './BurgerMenu'
+import { authActions } from '../shared/store/authSlice'
+
+import styles from '../styles/Landing.module.scss'
 
 function Navbar() {
-  const { pathname } = useLocation();
-  const [isAuth, setIsAuth] = useState(false);
-  const [menuActive, setMenuActive] = useState(false);
+  const { pathname } = useLocation()
+  const { isLoggedIn, isLoggingIn } = useSelector((s) => s.auth)
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (localStorage.getItem("username") !== null) {
-      setIsAuth(true);
-    } else localStorage.clear();
-  }, []);
+  const [menuActive, setMenuActive] = useState(false)
 
   const menuHandler = () => {
-    setMenuActive(!menuActive);
-  };
+    setMenuActive(!menuActive)
+  }
 
-  return pathname === "/questions" ? (
+  return pathname === '/questions' ? (
     <div></div>
   ) : (
     <div className={styles.navigation}>
@@ -33,7 +32,7 @@ function Navbar() {
           <Link to="/scoreboard">Scoreboard</Link>
         </ul>
       </div>
-      {isAuth === true ? (
+      {isLoggedIn ? (
         <Fragment>
           <Link
             to="/logout"
@@ -45,12 +44,27 @@ function Navbar() {
       ) : (
         <div className={styles.authentication}>
           <Fragment>
-            <Link to="/login" className={styles.login}>
-              Log<span>In</span>{" "}
+            <Link
+              onClick={() => {
+                if (isLoggingIn) dispatch(authActions.isSigning())
+                else dispatch(authActions.isLogging())
+              }}
+              to={isLoggingIn ? '/signup' : '/login'}
+              className={styles.login}
+            >
+              {isLoggingIn ? (
+                <>
+                  Sign<span>Up</span>
+                </>
+              ) : (
+                <>
+                  Log<span>In</span>
+                </>
+              )}
             </Link>
           </Fragment>
         </div>
-      )}{" "}
+      )}
       <div className={styles.menu} onClick={() => menuHandler()}>
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>
@@ -60,7 +74,7 @@ function Navbar() {
         <BurgerMenu menuActive={menuActive} menuHandler={menuHandler} />
       )}
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

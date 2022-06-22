@@ -1,22 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { pageAnimation } from "./Animation";
-import axios from "axios";
-import styles from "../styles/Scoreboard.module.scss";
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner/LoadingSpinner'
+import { pageAnimation } from './Animation'
+import { useHttp } from '../shared/hooks/http-hook'
+
+import styles from '../styles/Scoreboard.module.scss'
 
 function Scoreboard() {
-  const [scoreboardData, setScoreboardData] = useState(null);
+  const [scoreboardData, setScoreboardData] = useState([])
+  const { sendRequest, isLoading, error } = useHttp()
 
   useEffect(() => {
-    const promise = axios.get("http://127.0.0.1:8000/api/users/scoreboard");
-    const data = promise.then((res) =>
-      setScoreboardData(res.data.sort((a, b) => b.score - a.score))
-    );
-    return data;
-  }, []);
+    const fetchUserData = async () => {
+      const response = await sendRequest('users')
+      const filteredUsers = response.users.filter(
+        (user) => user.quizTaken === true,
+      )
+      setScoreboardData(filteredUsers.sort((a, b) => b.score - a.score))
+    }
+    fetchUserData()
+  }, [sendRequest])
 
-  if (scoreboardData) {
-    return (
+  return (
+    <>
+      {isLoading && (
+        <div style={{ textAlign: 'center' }}>
+          <LoadingSpinner osOverlay />
+        </div>
+      )}
       <motion.div
         variants={pageAnimation}
         initial="hidden"
@@ -24,21 +36,24 @@ function Scoreboard() {
         className={styles.container}
       >
         <div className={styles.scoreboard}>
-          {scoreboardData.map((user, i) => (
-            <div
-              key={user.id}
-              className={i >= 1 ? styles.each_user : styles.top_user}
-            >
-              <h4>{user.username}</h4>
-              <h3>{user.score}</h3>
-            </div>
-          ))}
+          {scoreboardData.length === 0 && !isLoading && (
+            <h1>No tests are taken yet</h1>
+          )}
+          {scoreboardData.length !== 0 &&
+            scoreboardData.map((user, i) => (
+              <div
+                key={user._id}
+                className={i >= 1 ? styles.each_user : styles.top_user}
+              >
+                <h4>{user.username}</h4>
+                <h3>{user.score}</h3>
+              </div>
+            ))}
         </div>
+        {error && <div className={styles.incorrect}>{error}</div>}
       </motion.div>
-    );
-  } else {
-    return <h2>Loading data</h2>;
-  }
+    </>
+  )
 }
 
-export default Scoreboard;
+export default Scoreboard
