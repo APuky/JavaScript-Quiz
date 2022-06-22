@@ -5,4 +5,4 @@ import connectWithDb from './config/db.js'
 const { PORT } = process.env
 
 connectWithDb()
-app.listen(PORT, () => console.log(`Server is up at ${PORT}`))
+app.listen(5000 || PORT, () => console.log(`Server is up at ${PORT}`))
