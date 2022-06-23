@@ -1,23 +1,29 @@
-import Main from './components/Main'
+import { lazy, Suspense } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
-import Layout from './components/Layout'
-import Login from './components/account/auth/Login'
-import Signup from './components/account/auth/Signup'
-import Logout from './components/account/auth/Logout'
-import Account from './components/account/Account'
-import Scoreboard from './components/Scoreboard'
-import Quiz from './components/Quiz'
-import Questions from './components/Questions'
-
+import LoadingSpinner from './shared/UIElements/LoadingSpinner/LoadingSpinner'
 import './styles/Main.scss'
+
+const Main = lazy(() => import('./components/Main'))
+const Layout = lazy(() => import('./components/Layout'))
+const Login = lazy(() => import('./components/account/auth/Login'))
+const Signup = lazy(() => import('./components/account/auth/Signup'))
+const Logout = lazy(() => import('./components/account/auth/Logout'))
+const Account = lazy(() => import('./components/account/Account'))
+const Scoreboard = lazy(() => import('./components/Scoreboard'))
+const Quiz = lazy(() => import('./components/Quiz'))
+const Questions = lazy(() => import('./components/Questions'))
 
 function App() {
   const { isLoggedIn } = useSelector((s) => s.auth)
-
   return (
-    <>
+    <Suspense
+      fallback={
+        <div style={{ textAlign: 'center' }}>
+          <LoadingSpinner asOverlay />
+        </div>
+      }
+    >
       <Layout>
         <Switch>
           <Route path="/" exact>
@@ -29,7 +35,6 @@ function App() {
           <Route path="/signup" exact>
             <Signup />
           </Route>
-
           <Route path="/account" exact>
             <Account />
           </Route>
@@ -53,7 +58,7 @@ function App() {
           )}
         </Switch>
       </Layout>
-    </>
+    </Suspense>
   )
 }
 

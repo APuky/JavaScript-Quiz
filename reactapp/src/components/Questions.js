@@ -86,9 +86,9 @@ function Questions() {
         await sendRequest('users/update_quiz_status', 'PATCH', data, {
           Authorization: `Bearer ${token}`,
         })
+        dispatch(userDataActions.updateData(data))
+        history.push('/account')
       } catch (e) {}
-      dispatch(userDataActions.updateData(data))
-      history.push('/account')
     } else {
       setCurrentQuestion(currentQuestion + 1)
       setIsAnswerCorrect('')

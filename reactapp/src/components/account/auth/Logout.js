@@ -20,13 +20,14 @@ const Logout = () => {
 
   const handleLogout = async (e) => {
     e.preventDefault()
-    const response = await sendRequest('users/logout', 'GET', null, {
-      Authorization: `Bearer ${token}`,
-    })
-    dispatch(authActions.logout())
-    dispatch(userDataActions.clearData())
-    history.push('/')
-    console.log(response)
+    try {
+      await sendRequest('users/logout', 'GET', null, {
+        Authorization: `Bearer ${token}`,
+      })
+      history.push('/')
+      dispatch(authActions.logout())
+      dispatch(userDataActions.clearData())
+    } catch (e) {}
   }
 
   return (

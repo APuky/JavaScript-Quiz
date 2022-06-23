@@ -1,13 +1,22 @@
+import { validationResult } from 'express-validator'
+
 import HttpError from '../utils/http-error.js'
 import User from '../models/user-model.js'
 import cookieToken from '../utils/cookieToken.js'
-import { validationResult } from 'express-validator'
 
 export const getAllUsers = async (req, res, next) => {
-  const users = await User.find()
-  if (users.length === 0)
-    return next(new HttpError('No users are yet registered'))
-  res.status(200).json({ success: true, users })
+  let users
+  try {
+    users = await User.find(
+      {},
+      { password: 0, email: 0, role: 0, createdAt: 0 },
+    )
+  } catch (e) {
+    return next(new HttpError('Something went wrong, please try again', 500))
+  }
+  if (users.length === 0) return next(new HttpError('No users found'))
+  const filteredUsers = users.filter((user) => user.quizTaken === true)
+  res.status(200).json({ success: true, users: filteredUsers })
 }
 
 export const signup = async (req, res, next) => {
@@ -23,8 +32,7 @@ export const signup = async (req, res, next) => {
     const existingEmail = await User.findOne({ email })
     const existingUsername = await User.findOne({ username })
     if (existingEmail) return next(new HttpError('Email already exists', 422))
-    if (existingUsername)
-      return next(new HttpError('Username already exists', 422))
+    if (existingUsername) return next(new HttpError('Username is taken', 422))
   } catch (e) {
     return next(new HttpError('Signing up failed, please try again', 500))
   }
@@ -103,7 +111,6 @@ export const updateQuizStatus = async (req, res, next) => {
   try {
     await user.save()
   } catch (e) {
-    console.log(e)
     return next(new HttpError('Something went wrong, please try again', 500))
   }
   user.password = undefined

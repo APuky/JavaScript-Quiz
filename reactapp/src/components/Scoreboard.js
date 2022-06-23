@@ -9,15 +9,12 @@ import styles from '../styles/Scoreboard.module.scss'
 
 function Scoreboard() {
   const [scoreboardData, setScoreboardData] = useState([])
-  const { sendRequest, isLoading, error } = useHttp()
+  const { sendRequest, isLoading } = useHttp()
 
   useEffect(() => {
     const fetchUserData = async () => {
       const response = await sendRequest('users')
-      const filteredUsers = response.users.filter(
-        (user) => user.quizTaken === true,
-      )
-      setScoreboardData(filteredUsers.sort((a, b) => b.score - a.score))
+      setScoreboardData(response.users.sort((a, b) => b.score - a.score))
     }
     fetchUserData()
   }, [sendRequest])
@@ -50,7 +47,6 @@ function Scoreboard() {
               </div>
             ))}
         </div>
-        {error && <div className={styles.incorrect}>{error}</div>}
       </motion.div>
     </>
   )

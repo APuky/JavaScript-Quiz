@@ -1,4 +1,4 @@
-# Django & React Quiz Web App
+# Node & React Quiz Web App
 
 Creating full stack app 
 
