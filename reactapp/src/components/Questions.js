@@ -75,30 +75,30 @@ function Questions() {
     }
   };
 
-  const nextQuestionHandler = async () => {
+ const nextQuestionHandler = async () => {
     if (currentQuestion >= questions.length - 1) {
       const data = {
         score: correctAnswers,
         uid,
         flag: 'QUIZ_COMPLETED',
-      };
+      }
       try {
         await sendRequest('users/update_quiz_status', 'PATCH', data, {
-          Authorization: `Bearer ${token}`,
-        });
+          Authorization: Bearer ${token},
+        })
+        dispatch(userDataActions.updateData(data))
+        history.push('/account')
       } catch (e) {}
-      dispatch(userDataActions.updateData(data));
-      history.push('/account');
     } else {
-      setCurrentQuestion(currentQuestion + 1);
-      setIsAnswerCorrect('');
-      setCorrectAnswerNumber('');
-      setSelectedAnswerBoolean('');
+      setCurrentQuestion(currentQuestion + 1)
+      setIsAnswerCorrect('')
+      setCorrectAnswerNumber('')
+      setSelectedAnswerBoolean('')
     }
 
-    setTimeLeft(59);
-    setMinutes(1);
-  };
+    setTimeLeft(59)
+    setMinutes(1)
+  }
 
   return (
     <>

@@ -32,8 +32,8 @@ function Quiz() {
         await sendRequest('users/update_quiz_status', 'PATCH', data, {
           Authorization: `Bearer ${token}`,
         })
+        dispatch(userDataActions.updateData(data))
       } catch (e) {}
-      dispatch(userDataActions.updateData(data))
     }
   }
 
