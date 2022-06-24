@@ -62,7 +62,7 @@ export const login = async (req, res, next) => {
 
   if (!user)
     return next(
-      new HttpError("Username don't exists, please signup instead", 403),
+      new HttpError("Username doesn't exists, please signup instead", 403),
     )
 
   const isPasswordCorrect = await user.isValidatedPassword(password)
