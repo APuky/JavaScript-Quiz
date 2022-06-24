@@ -1,5 +1,8 @@
 # Node & React Quiz Web App
 
-Creating full stack app 
+Full MERN stack app built in GitHub collaboration project
 
-| Work in progress |
+Using NodeJS as a backend and ReactJS as a frontend. Project is connected to MongoDB database.
+
+SignUp and answer 10 questions to place yourself on public scoreboard!
+
